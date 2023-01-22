@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}
+        Signup
+    {% endblock title %}
+{% block body %}
+
+<section id="register" class="register">
+    <div class="container" id = "register"><div class="section-title" data-aos="zoom-out">
+        <br>
+        <br>
+        <h2>Register</h2>
+        <p>Create a new account</p>
+      </div>
+        <div class="col " data-aos="fade-left">
+            <form method="POST">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" name = "email" id="email" aria-describedby="emailHelp">
+              
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">UserName</label>
+                <input type="text" class="form-control" name = "username" id="username">
+              </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" name = "password" id="password">
+            </div>
+            <div class="mb-3">
+                <label for="cpassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" name = "cpassword" id="cpassword">
+              </div>
+              <div class="text-center"><button class = "btn btn-secondary" type="submit" >Register</button></div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+
+</section><!-- End register Section -->
+  
+
+    
+      {% endblock body %}
+

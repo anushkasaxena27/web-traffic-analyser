@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}
+        Login
+    {% endblock title %}
+{% block body %}
+<h1>Login</h1>
+<form method = "POST">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" name = "email" id="email" aria-describedby="emailHelp">
+      <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" name = "password" id="password">
+    </div>
+    
+    <button type="submit" id="Login" name="Login" class="btn btn-primary" href = "/">Login</button>
+  </form>
+
+  {% endblock body %}
+  {% block js %}
+    <script>
+      $(function () {
+        $("#Login").click(function (e) {
+          e.preventDefault();
+          track_logins(e);
+          $.ajax({
+            type: "POST",
+            url: "/login",
+            data: {
+              email: $("#email").val(),
+              password: $("#password").val(),
+            },
+            success: function (response) {
+              console.log(response);
+              if (response.status == "success") {
+                window.location.href = "/";
+              } else {
+                alert("Invalid Credentials");
+              }
+            },
+          });
+        });
+      });
+    </script>
+  {% endblock %}
+  

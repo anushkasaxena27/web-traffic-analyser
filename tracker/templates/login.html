@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+        Login
+    {% endblock title %}
+{% block body %}
+
+<section id="login" class="login">
+    <div class="container" id = "login"><div class="section-title" data-aos="zoom-out">
+        <br>
+        <br>
+        <h2>Login</h2>
+        <p>Login</p>
+      </div>
+        <div class="col " data-aos="fade-left">
+            <form method="POST">
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" name = "email" id="email" aria-describedby="emailHelp">
+              
+            </div>
+            
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" name = "password" id="password">
+            </div>
+            
+              <div class="text-center"><button class = "btn btn-secondary" type="submit" >Login</button></div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+
+</section><!-- End login Section -->
+  
+
+    
+      {% endblock body %}
+
