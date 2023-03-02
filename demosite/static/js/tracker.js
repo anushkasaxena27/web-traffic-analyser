@@ -66,7 +66,7 @@ function getUserDevice(){
     if (navigator.userAgent.indexOf("iPhone")!=-1) device="Mobile";
     if (navigator.userAgent.indexOf("Android")!=-1) device="Mobile";
     if (navigator.userAgent.indexOf("Windows")!=-1) device="Desktop";
-    if (navigator.userAgent.indexOf("Macintosh")!=-1) device="Desktop";
+    if (navigator.userAgent.indexOf("Mac")!=-1) device="Desktop";
     if (navigator.userAgent.indexOf("Desktop")!=-1) device="Desktop";
 
     return device;

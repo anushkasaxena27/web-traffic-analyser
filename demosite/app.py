@@ -79,10 +79,12 @@ def signup():
         flash("Signup Successfully", "success")
         return jsonify({'message': 'Signup Successfully', 'status': 'success'})
     return render_template('signup.html')
-
+ 
 @app.route('/')
+
 def home():
-    return render_template('index.html')
+        
+        return render_template('index.html')
 
 @app.route('/contact',methods = ['GET','POST'] )
 #@cross_origin()
