@@ -10,6 +10,8 @@
 // 10. User longitude
 // 11. duration of visit
 
+common_url = 'http://192.168.1.22:8000'
+
 function addCookie(name, value, days) {
     var expires;
     if (days) {
@@ -113,9 +115,9 @@ function formatTime(ms) {
 // contact form submission
 
 
-function track_registration(){
+function track_registration(e){
     let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
-    post_url = 'http://192.168.2.60:8000/track/register'
+    post_url = common_url +'/track/register'
     console.log("sending register form submission data")
     console.log(ip);
     $.ajax({
@@ -142,7 +144,7 @@ function track_registration(){
 function track_logins(e){
     // get ip from cookie
     let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
-    post_url = 'http://192.168.2.60:8000/track/logins'
+    post_url = common_url+'/track/logins'
     console.log("sending login form submission data")
     console.log(ip);
     $.ajax({
@@ -201,7 +203,7 @@ function getIp(){
 
 function save_contact_form_data(){
     let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
-    post_url ='http://192.168.2.60:8000/track/contacts/'
+    post_url = common_url + '/track/contacts/'
     console.log("sending contact form submission data")
     console.log(ip);
     $.ajax({
@@ -231,5 +233,43 @@ function save_contact_form_data(){
 
 // display in console
 setDuration()
-getIp()
+visitCounter()
+// getIp()
+
+// track page visits
+function page_visit(){
+    let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
+    post_url = common_url + '/track/main/'
+    console.log("sending page visit data")
+    console.log(ip);
+    $.ajax({
+        type: "POST",
+        url: post_url,
+        datatype: "jsonp",
+        data: {
+            "ip": ip,
+            "website": $(location).attr('href'),
+            "browser": fnBrowserDetect(),
+            "os": getOs(),
+            "device": getUserDevice(),
+            "city": city,
+            "region": region,
+            "country": country,
+            "lat": lat, 
+            "long": long,
+            "duration": getDuration(),
+        },
+        success: function (data) {
+            console.log("sent page visit data")
+            console.log(data);
+
+        },
+        error: function (data) {
+            console.log('An error occurred.');
+            console.log(data);
+        },
+        crossDomain: true,
+    });
+}
+
 

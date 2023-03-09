@@ -93,7 +93,105 @@
       </div>
     </section><!-- End About Section -->
 
-
+    {% block content%}
+    
+      <h3>Login </h3>
+      <table class="table table-striped" border = "1" style="width:40%">
+      <thead>
+        <tr >
+          <th scope="col">#</th>
+          <th scope="col">IP Address</th>
+          <th scope="col">Date</th>
+          <th scope="col">Website</th>
+          <th scope="col">Login Attempt</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in login_data %}
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.ip }}</td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.website }}</td>
+          <td>{{ item.login_count}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+    
+        <h3>Signup</h3>
+        <table class="table table-striped" border = 1>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">IP Address</th>
+            <th scope="col">Date</th>
+            <th scope="col">Website</th>
+            <th scope="col">Signup Attempt</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in signup_data %}
+          <tr>
+            <td >{{ item.id }}</td>
+            <td>{{ item.ip }}</td>
+            <td>{{ item.date }}</td>
+            <td>{{ item.website }}</td>
+            <td>{{ item.register_count}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  
+        <h3>Contact </h3>
+        <table class="table table-striped" border = 1>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">IP Address</th>
+            <th scope="col">Date</th>
+            <th scope="col">Website</th>
+            <th scope="col">Contact Attempt</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in contact_data %}
+          <tr>
+            <td >{{ item.id }}</td>
+            <td>{{ item.ip }}</td>
+            <td>{{ item.date }}</td>
+            <td>{{ item.website }}</td>
+            <td>{{ item.contact_count }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  
+          <h3>Page View</h3>
+          <table class="table table-striped" border = 1>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">IP Address</th>
+              <th scope="col">Date</th>
+              <th scope="col">Website</th>
+              <th scope="col">Page View</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in pagevisit_data %}
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.ip }}</td>
+              <td>{{ item.date }}</td>
+              <td>{{ item.website }}</td>
+              <td>{{ item.visitor_count }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+    {% endblock content %}
 
     
 
@@ -301,3 +399,7 @@
 
   </main><!-- End #main -->
   {% endblock body %}
+
+  
+
+  

@@ -31,7 +31,7 @@ class Contact(db.Model):
     def __str__(self) -> str:
         return f"{self.name} - {self.email} - {self.phone} - {self.message}"
 
-class PageVisit(db.Model):
+class TrackPageVisit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     ip = db.Column(db.String(12), nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
@@ -70,7 +70,25 @@ class TrackContact(db.Model):
 
     def __str__(self) -> str:
         return f"{self.ip} - {self.date}"
+    
+class PageData(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    ip = db.Column(db.String(12), nullable=False)
+    website = db.Column(db.String(200), nullable=False)
+    browser = db.Column(db.String(200), nullable=False)
+    user_os = db.Column(db.String(200), nullable=False)
+    user_device = db.Column(db.String(200), nullable=False)
+    city = db.Column(db.String(200), nullable=False)
+    region = db.Column(db.String(200), nullable=False)
+    country = db.Column(db.String(200), nullable=False)
+    lat = db.Column(db.String(200), nullable=False)
+    long = db.Column(db.String(200), nullable=False)
+    duration = db.Column(db.String(200), nullable=False)
+    
 
+    def __str__(self) -> str:
+        return f"{self.ip} - {self.date}"
+    
 @app.route('/register',methods = ['GET','POST'] )
 def signup():
     if request.method == 'POST':
@@ -123,7 +141,7 @@ def hello():
     login_data = TrackLogin.query.all()
     signup_data = TrackSignup.query.all()
     contact_data = TrackContact.query.all()
-    pagevisit_data = PageVisit.query.all()
+    pagevisit_data = TrackPageVisit.query.all()
     return render_template('index.html',login_data=login_data,signup_data=signup_data,contact_data=contact_data,pagevisit_data=pagevisit_data)
 
 @app.route('/contact',methods = ['GET','POST'] )
@@ -178,7 +196,7 @@ def track_registrations():
         return jsonify({'success':True})
     return jsonify({'success':False})
 
-@app.route('/track/contacts',methods = ['POST'])
+@app.route('/track/contacts',methods = ['GET','POST'])
 @cross_origin()
 def track_contact():
     if request.method == 'POST':
@@ -202,13 +220,13 @@ def track_pagevists():
     if request.method == 'POST':
         ip = request.form.get('ip')
         website = request.form.get('website')
-        query = TrackPageVisit.query.filter_by(ip=ip).first()
+        query = PageVisit.query.filter_by(ip=ip).first()
         if query:
             query.date = datetime.utcnow()
             query.page_visit_count += 1
             db.session.commit()
         else:
-            track_pagevisit = TrackPageVisit(ip=ip,website=website)
+            track_pagevisit = PageVisit(ip=ip,website=website)
             db.session.add(track_pagevisit)
             db.session.commit()
         return jsonify({'success':True})
