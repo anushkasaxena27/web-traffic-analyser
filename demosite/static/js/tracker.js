@@ -201,20 +201,18 @@ function getIp(){
     });
 }
 
-function save_contact_form_data(){
+function save_contact_form_data(e){
     let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
-    post_url = common_url + '/track/contacts/'
+    post_url = common_url + '/track/contacts'
     console.log("sending contact form submission data")
     console.log(ip);
     $.ajax({
         type: "POST",
         url: post_url,
+        datatype: "jsonp",
         data: {
             "ip": ip,
-            "name": $('#name').val(),
-            "email": $('#email').val(),
-            "phone": $('#phone').val(),
-            "message": $('#message').val(),
+            "website": $(location).attr('href'),
         },
         success: function (data) {
             console.log("sent contact form submission data")
@@ -227,19 +225,47 @@ function save_contact_form_data(){
             console.log(data);
         },
         crossDomain: true,
-        datatype: "jsonp",
     });
 }
+
+
+function track_page_visits(){
+    // get ip from cookie
+    let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
+    post_url = common_url + '/track/pagevists'
+    console.log("sending page visit data")
+    console.log(ip);
+    $.ajax({
+        type: "POST",
+        url: post_url,
+        datatype: "jsonp",
+        data: {
+            "ip": ip,
+            "website": $(location).attr('href'),
+
+        },
+        success: function (data) {
+            console.log("sent page visit data")
+            console.log(data);
+
+        },
+        error: function (data) {
+            console.log('An error occurred.');
+            console.log(data);
+        },
+        crossDomain: true,
+    });
+
 
 // display in console
 setDuration()
 visitCounter()
-// getIp()
+//getIp()
 
-// track page visits
-function page_visit(){
+//track page visits
+function page_data(){
     let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
-    post_url = common_url + '/track/main/'
+    post_url = common_url + '/track/main'
     console.log("sending page visit data")
     console.log(ip);
     $.ajax({

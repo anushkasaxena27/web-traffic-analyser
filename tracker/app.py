@@ -216,22 +216,39 @@ def track_contact():
 
 @app.route('/track/pagevists', methods = ['GET','POST'] )
 @cross_origin()
-def track_pagevists():
+def track_page_visit():
     if request.method == 'POST':
         ip = request.form.get('ip')
         website = request.form.get('website')
-        query = PageVisit.query.filter_by(ip=ip).first()
+        query = TrackPageVisit.query.filter_by(ip=ip).first()
         if query:
             query.date = datetime.utcnow()
             query.page_visit_count += 1
             db.session.commit()
         else:
-            track_pagevisit = PageVisit(ip=ip,website=website)
+            track_pagevisit = TrackPageVisit(ip=ip,website=website)
             db.session.add(track_pagevisit)
             db.session.commit()
         return jsonify({'success':True})
     return jsonify({'success':False})
 
+@app.route('/track/main', methods = ['GET','POST'] )
+@cross_origin()
+def track_main():
+    if request.method == 'POST':
+        ip = request.form.get('ip')
+        website = request.form.get('website')
+        query = PageData.query.filter_by(ip=ip).first()
+        if query:
+            query.date = datetime.utcnow()
+            query.main_count += 1
+            db.session.commit()
+        else:
+            track_main = PageData(ip=ip,website=website)
+            db.session.add(track_main)
+            db.session.commit()
+        return jsonify({'success':True})
+    return jsonify({'success':False})
 
 if __name__ == '__main__':
     if not os.path.exists(dbname):
