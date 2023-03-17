@@ -87,7 +87,7 @@ class PageData(db.Model):
     
 
     def __str__(self) -> str:
-        return f"{self.ip} - {self.date}"
+        return f"{self.ip} - {self.region}"
     
 @app.route('/register',methods = ['GET','POST'] )
 def signup():

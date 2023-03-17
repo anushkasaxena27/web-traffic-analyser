@@ -10,7 +10,13 @@
 // 10. User longitude
 // 11. duration of visit
 
-common_url = 'http://192.168.1.22:8000'
+common_url = 'http://192.168.1.11:8000'
+city = null;
+region = null;
+country = null;
+lat = null;
+long = null;
+
 
 function addCookie(name, value, days) {
     var expires;
@@ -234,7 +240,6 @@ function track_page_visits(){
     let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
     post_url = common_url + '/track/pagevists'
     console.log("sending page visit data")
-    console.log(ip);
     $.ajax({
         type: "POST",
         url: post_url,
@@ -255,6 +260,7 @@ function track_page_visits(){
         },
         crossDomain: true,
     });
+}
 
 
 // display in console
@@ -267,7 +273,7 @@ function page_data(){
     let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
     post_url = common_url + '/track/main'
     console.log("sending page visit data")
-    console.log(ip);
+    
     $.ajax({
         type: "POST",
         url: post_url,
