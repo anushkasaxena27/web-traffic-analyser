@@ -10,12 +10,7 @@
 // 10. User longitude
 // 11. duration of visit
 
-common_url = 'http://192.168.1.11:8000'
-city = null;
-region = null;
-country = null;
-lat = null;
-long = null;
+common_url = 'http://192.168.18.146:8000'
 
 
 function addCookie(name, value, days) {
@@ -76,7 +71,7 @@ function getUserDevice(){
     if (navigator.userAgent.indexOf("Windows")!=-1) device="Desktop";
     if (navigator.userAgent.indexOf("Mac")!=-1) device="Desktop";
     if (navigator.userAgent.indexOf("Desktop")!=-1) device="Desktop";
-
+    
     return device;
 }
 
@@ -96,6 +91,7 @@ function getDetails(){
 }
 
 
+
 //For duration of visit
 function setDuration(){
     var startTime = new Date().getTime();
@@ -109,9 +105,13 @@ function setDuration(){
 }
 
 function getDuration(){
-    cookie = document.cookie;
-    cookie = cookie.split(";");
-    console.log(cookie);
+    //cookie = document.cookie;
+    //cookie = cookie.split(";");
+    //console.log(cookie);
+    end = document.cookie.split(";").filter(c => c.indexOf("end") >= 0)[0].split("=")[1]
+    start = document.cookie.split(";").filter(c => c.indexOf("start") >= 0)[0].split("=")[1]
+    duration = end - start;
+    return formatTime(duration);
 }
 
 function formatTime(ms) {
@@ -137,7 +137,7 @@ function track_registration(e){
         success: function (data) {
             console.log("sent register form submission data")
             console.log(data);
-
+            
         },
         error: function (data) {
             console.log('An error occurred.');
@@ -164,7 +164,7 @@ function track_logins(e){
         success: function (data) {
             console.log("sent login form submission data")
             console.log(data);
-
+            
         },
         error: function (data) {
             console.log('An error occurred.');
@@ -196,12 +196,13 @@ function getIp(){
     $.getJSON("https://api.ipify.org?format=jsonp&callback=?",
     function(json) {
         console.log("IP Address: "+json.ip);
+        addCookie("ip", json.ip, 1);
         out = visitCounter(json.ip);
         console.log(out);
         console.log("Browser: " + fnBrowserDetect());
         console.log("OS: " + getOs());
         console.log("Device: " + getUserDevice());
-        getDetails();
+        // getDetails();
         console.log(`Duration: ${getDuration()} seconds`)
         //getDuration();
     });
@@ -238,6 +239,7 @@ function save_contact_form_data(e){
 function track_page_visits(){
     // get ip from cookie
     let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
+    
     post_url = common_url + '/track/pagevists'
     console.log("sending page visit data")
     $.ajax({
@@ -247,12 +249,12 @@ function track_page_visits(){
         data: {
             "ip": ip,
             "website": $(location).attr('href'),
-
+            
         },
         success: function (data) {
             console.log("sent page visit data")
             console.log(data);
-
+            
         },
         error: function (data) {
             console.log('An error occurred.');
@@ -266,42 +268,47 @@ function track_page_visits(){
 // display in console
 setDuration()
 visitCounter()
+
 //getIp()
 
 //track page visits
 function page_data(){
     let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
     post_url = common_url + '/track/main'
-    console.log("sending page visit data")
-    
-    $.ajax({
-        type: "POST",
-        url: post_url,
-        datatype: "jsonp",
-        data: {
-            "ip": ip,
-            "website": $(location).attr('href'),
-            "browser": fnBrowserDetect(),
-            "os": getOs(),
-            "device": getUserDevice(),
-            "city": city,
-            "region": region,
-            "country": country,
-            "lat": lat, 
-            "long": long,
-            "duration": getDuration(),
-        },
-        success: function (data) {
-            console.log("sent page visit data")
-            console.log(data);
-
-        },
-        error: function (data) {
-            console.log('An error occurred.');
-            console.log(data);
-        },
-        crossDomain: true,
-    });
+    fetch('https://ipapi.co/json/')
+    .then(response => response.json())
+    .then(data => {
+        $.ajax({
+            type: "POST",
+            url: post_url,
+            datatype: "jsonp",
+            data: {
+                "ip": data.ip,
+                "website": $(location).attr('href'),
+                "browser": fnBrowserDetect(),
+                "os": getOs(),
+                "device": getUserDevice(),
+                "city": data.city,
+                "region": data.region,
+                "country": data.country,
+                "lat": data.latitude,
+                "long": data.longitude,
+                "duration": getDuration(),
+            },
+            success: function (data) {
+                console.log("sent page visit data")
+                console.log(data);
+                
+            },
+            error: function (data) {
+                console.log('An error occurred.');
+                console.log(data);
+            },
+            crossDomain: true,
+            
+            
+        });
+    }); 
 }
 
 

@@ -223,7 +223,7 @@ def track_page_visit():
         query = TrackPageVisit.query.filter_by(ip=ip).first()
         if query:
             query.date = datetime.utcnow()
-            query.page_visit_count += 1
+            query.visitor_count += 1
             db.session.commit()
         else:
             track_pagevisit = TrackPageVisit(ip=ip,website=website)
@@ -236,19 +236,28 @@ def track_page_visit():
 @cross_origin()
 def track_main():
     if request.method == 'POST':
-        ip = request.form.get('ip')
-        website = request.form.get('website')
-        query = PageData.query.filter_by(ip=ip).first()
-        if query:
-            query.date = datetime.utcnow()
-            query.main_count += 1
-            db.session.commit()
-        else:
-            track_main = PageData(ip=ip,website=website)
-            db.session.add(track_main)
-            db.session.commit()
+        form_data = request.form
+        ip = form_data.get('ip')
+        website = form_data.get('website')
+        browser = form_data.get('browser')
+        user_os = form_data.get('os')
+        user_device = form_data.get('device')
+        city = form_data.get('city')
+        region = form_data.get('region')
+        country = form_data.get('country')
+        lat = form_data.get('lat')
+        long = form_data.get('long')
+        duration = form_data.get('duration')
+
+        page = PageData(ip=ip,website=website,browser=browser,user_os=user_os,user_device=user_device,city=city,region=region,country=country,lat=lat,long=long,duration=duration)
+        db.session.add(page)
+        db.session.commit()
         return jsonify({'success':True})
     return jsonify({'success':False})
+
+
+
+
 
 if __name__ == '__main__':
     if not os.path.exists(dbname):
