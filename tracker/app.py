@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_cors import CORS, cross_origin
 import os
+import matplotlib.pyplot as plt
+import base64
 
 app = Flask(__name__)
 dbname = "tracker.sqlite"
@@ -142,7 +144,87 @@ def hello():
     signup_data = TrackSignup.query.all()
     contact_data = TrackContact.query.all()
     pagevisit_data = TrackPageVisit.query.all()
-    return render_template('index.html',login_data=login_data,signup_data=signup_data,contact_data=contact_data,pagevisit_data=pagevisit_data)
+    pagedata = PageData.query.all()
+    generate_plots()
+    loginimg = 'static/img/logins.png'
+    browserimg = 'static/img/browsers.png'
+    signupimg = 'static/img/signups.png'
+    contactimg = 'static/img/contacts.png'
+    pagevisitimg = 'static/img/pagevisits.png'
+
+    return render_template('index.html',login_data=login_data,signup_data=signup_data,contact_data=contact_data,pagevisit_data=pagevisit_data,pagedata=pagedata, loginimg=loginimg, browserimg=browserimg , signupimg=signupimg, contactimg=contactimg, pagevisitimg=pagevisitimg)
+
+def generate_plots():
+    logindata = TrackLogin.query.all()
+    x = [d.ip for d in logindata]
+    y = [d.login_count for d in logindata]
+    fig,ax = plt.subplots()
+    ax.bar(x, y)
+    ax.set_title('Logins')
+    ax.set_xlabel('IP Address')
+    ax.set_ylabel('Login Count')
+    if os.path.exists('static/img/logins.png'):
+        os.remove('static/img/logins.png')
+    plt.savefig('static/img/logins.png')
+    
+    plt.clf()
+
+    pagedata = PageData.query.all()
+    browser_types = []
+    counts = []
+    for d in pagedata:
+        if d.browser not in browser_types:
+            browser_types.append(d.browser)
+            counts.append(1)
+        else:
+            index = browser_types.index(d.browser)
+            counts[index] += 1
+    plt.pie (counts, labels=browser_types)
+    if os.path.exists('static/img/browsers.png'):
+        os.remove('static/img/browsers.png')
+    plt.savefig('static/img/browsers.png')
+    plt.clf()
+     
+    signupdata = TrackSignup.query.all()
+    x = [d.ip for d in signupdata]
+    y = [d.register_count for d in signupdata]
+    fig,ax = plt.subplots()
+    ax.bar(x, y)
+    ax.set_title('Signups')
+    ax.set_xlabel('IP Address')
+    ax.set_ylabel('Signup Count')
+    if os.path.exists('static/img/signups.png'):
+        os.remove('static/img/signups.png')
+    plt.savefig('static/img/signups.png')
+    plt.clf()
+
+    contactdata = TrackContact.query.all()
+    x = [d.ip for d in contactdata]
+    y = [d.contact_count for d in contactdata]
+    fig,ax = plt.subplots()
+    ax.bar(x, y)
+    ax.set_title('Contacts')
+    ax.set_xlabel('IP Address')
+    ax.set_ylabel('Contact Count')
+    if os.path.exists('static/img/contacts.png'):
+        os.remove('static/img/contacts.png')
+    plt.savefig('static/img/contacts.png')
+    plt.clf()
+
+    pagevisitdata = TrackPageVisit.query.all()
+    x = [d.ip for d in pagevisitdata]
+    y = [d.visitor_count for d in pagevisitdata]
+    fig,ax = plt.subplots()
+    ax.bar(x, y)
+    ax.set_title('Page Visits')
+    ax.set_xlabel('IP Address')
+    ax.set_ylabel('Page Visit Count')
+    if os.path.exists('static/img/pagevisits.png'):
+        os.remove('static/img/pagevisits.png')
+    plt.savefig('static/img/pagevisits.png')
+    plt.clf()
+    
+
 
 @app.route('/contact',methods = ['GET','POST'] )
 def contact():

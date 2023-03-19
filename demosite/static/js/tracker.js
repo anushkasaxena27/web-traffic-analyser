@@ -12,6 +12,14 @@
 
 common_url = 'http://192.168.18.146:8000'
 
+fetch('https://api.ipify.org/?format=json')
+.then(response => response.json())
+.then(data => {
+    ip = data.ip;
+    console.log(ip);
+    addCookie("ip", ip, 1);
+});
+
 
 function addCookie(name, value, days) {
     var expires;
@@ -34,16 +42,16 @@ function fnBrowserDetect(){
     let userAgent = navigator.userAgent;
     let browserName;
     
-    if(userAgent.match(/chrome|chromium|crios/i)){
-        browserName = "chrome";
+    if(userAgent.match(/chrome|crios/i)){
+        browserName = "Chrome";
     }else if(userAgent.match(/firefox|fxios/i)){
-        browserName = "firefox";
+        browserName = "Firefox";
     }else if(userAgent.match(/safari/i)){
-        browserName = "safari";
+        browserName = "Safari";
     }else if(userAgent.match(/opr\//i)){
-    browserName = "opera";
+    browserName = "Opera";
 }else if(userAgent.match(/edg/i)){
-    browserName = "edge";
+    browserName = "Edge";
 }else{
     browserName="No browser detection";
 }
@@ -71,6 +79,7 @@ function getUserDevice(){
     if (navigator.userAgent.indexOf("Windows")!=-1) device="Desktop";
     if (navigator.userAgent.indexOf("Mac")!=-1) device="Desktop";
     if (navigator.userAgent.indexOf("Desktop")!=-1) device="Desktop";
+    if(navigator.userAgent.indexOf("Laptop")!=-1) device="Laptop";
     
     return device;
 }
@@ -110,7 +119,7 @@ function getDuration(){
     //console.log(cookie);
     end = document.cookie.split(";").filter(c => c.indexOf("end") >= 0)[0].split("=")[1]
     start = document.cookie.split(";").filter(c => c.indexOf("start") >= 0)[0].split("=")[1]
-    duration = end - start;
+    duration = Math.abs(end - start);
     return formatTime(duration);
 }
 
@@ -149,7 +158,7 @@ function track_registration(e){
 
 function track_logins(e){
     // get ip from cookie
-    let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
+    //let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
     post_url = common_url+'/track/logins'
     console.log("sending login form submission data")
     console.log(ip);
@@ -239,9 +248,9 @@ function save_contact_form_data(e){
 function track_page_visits(){
     // get ip from cookie
     let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
-    
     post_url = common_url + '/track/pagevists'
-    console.log("sending page visit data")
+    console.log(ip)
+    console.log("sending page visit data " + ip)
     $.ajax({
         type: "POST",
         url: post_url,
@@ -267,14 +276,15 @@ function track_page_visits(){
 
 // display in console
 setDuration()
-visitCounter()
+//visitCounter()
 
 //getIp()
 
 //track page visits
 function page_data(){
-    let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
+    //let ip = document.cookie.split(";").filter(c => c.indexOf("ip") >= 0)[0].split("=")[1];
     post_url = common_url + '/track/main'
+    console.log("sending page data")
     fetch('https://ipapi.co/json/')
     .then(response => response.json())
     .then(data => {
@@ -296,7 +306,7 @@ function page_data(){
                 "duration": getDuration(),
             },
             success: function (data) {
-                console.log("sent page visit data")
+                console.log("sent page data")
                 console.log(data);
                 
             },

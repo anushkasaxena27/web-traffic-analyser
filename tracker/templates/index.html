@@ -118,8 +118,8 @@
         {% endfor %}
       </tbody>
     </table>
+    <img src = "{{loginimg}}"/>
     
-
     
         <h3>Signup</h3>
         <table class="table table-striped" border = 1 style="width:40%">
@@ -144,6 +144,7 @@
           {% endfor %}
         </tbody>
       </table>
+      <img src = "{{signupimg}}"/>
   
         <h3>Contact </h3>
         <table class="table table-striped" border = 1 style="width:40%">
@@ -168,6 +169,7 @@
           {% endfor %}
         </tbody>
       </table>
+      <img src = "{{contactimg}}"/>
   
           <h3>Page View</h3>
           <table class="table table-striped" border = 1 style="width:40%">
@@ -192,6 +194,50 @@
             {% endfor %}
           </tbody>
       </table>
+      <img src = "{{pagevisitimg}}"/>
+
+      <h3>Page Data</h3>
+      <table class="table table-striped" border = 1 style="width:40%">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">IP Address</th>
+          <th scope="col">Date</th>
+          <th scope="col">Website</th>
+          <th scope="col">Browser</th>
+          <th scope="col">OS</th>
+          <th scope="col">Device</th>
+          <th scope="col">City</th>
+          <th scope="col">Country</th>
+          <th scope="col">Region</th>
+          <th scope="col">Latitude</th>
+          <th scope="col">Longitude</th>
+          <th scope="col">Duration</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for item in pagedata %}
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.ip }}</td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.website }}</td>
+          <td>{{ item.browser }}</td>
+          <td>{{ item.os }}</td>
+          <td>{{ item.device }}</td>
+          <td>{{ item.city }}</td>
+          <td>{{ item.country }}</td>
+          <td>{{ item.region }}</td>
+          <td>{{ item.lat }}</td>
+          <td>{{ item.long }}</td>
+          <td>{{ item.duration }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      
+    </table>
+    <img src = "{{browserimg}}"/>
     {% endblock content %}
 
     
