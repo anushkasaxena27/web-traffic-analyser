@@ -30,7 +30,8 @@
 
   <!-- Template Main CSS File -->
   <link href="static/css/style.css" rel="stylesheet">
-
+    {% block css %}{% endblock %}
+    
   
 </head>
 
@@ -101,6 +102,8 @@
 
   <!-- Template Main JS File -->
   <script src="static/js/main.js"></script>
+  {% block js %}{% endblock %}
+  
 
 </body>
 

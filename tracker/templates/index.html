@@ -1,452 +1,397 @@
 {% extends 'base.html' %}
 {% block title %}
-        Home
-    {% endblock title %}
+Home
+{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+{% endblock %}
+
 {% block body %}
 
 
-  <!-- ======= Hero Section ======= -->
-  
-  <section id="hero" class="d-flex flex-column justify-content-end align-items-center">
-    <div id="heroCarousel" data-bs-interval="5000" class="container carousel carousel-fade" data-bs-ride="carousel">  
-  
-      <!-- Slide 1 -->
-      <div class="carousel-item active">
-        <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Web Traffic Analyser</span></h2>
-          <p class="animate__animated fanimate__adeInUp">Web Traffic Analyzer is a leading global provider of Real-Time Web Analytics Solutions , delivered to customers through hosted, on demand services without costly investments in IT infrastructure . Our web analytics solutions dramatically improve the visitor experience, online sales and ROI of marketing campaigns of today's largest online businesses</p>
-          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-        </div>
-      </div>
-  
-      <!-- Slide 2 -->
-      <!-- <div class="carousel-item">
-        <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
-          <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-        </div>
-      </div> -->
-  
-      
-       <!-- <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
-      </a>
-  
-      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
-      </a>  -->
-  
-    </div> 
+<!-- ======= Hero Section ======= -->
 
-    <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
-      <defs>
-        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+<section id="hero" class="d-flex flex-column justify-content-end align-items-center">
+  <div id="heroCarousel" data-bs-interval="5000" class="container carousel carousel-fade" data-bs-ride="carousel">  
+    
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <div class="carousel-container">
+        <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Web Traffic Analyser</span></h2>
+        <p class="animate__animated fanimate__adeInUp">Web Traffic Analyzer is a leading global provider of Real-Time Web Analytics Solutions , delivered to customers through hosted, on demand services without costly investments in IT infrastructure . Our web analytics solutions dramatically improve the visitor experience, online sales and ROI of marketing campaigns of today's largest online businesses</p>
+        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+      </div>
+    </div>
+    
+    <!-- Slide 2 -->
+    <!-- <div class="carousel-item">
+      <div class="carousel-container">
+        <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
+        <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+      </div>
+    </div> -->
+    
+    
+    <!-- <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
+    </a>
+    
+    <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
+    </a>  -->
+    
+  </div> 
+  
+  <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+    <defs>
+      <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
       </defs>
       <g class="wave1">
         <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
-      </g>
-      <g class="wave2">
-        <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
-      </g>
-      <g class="wave3">
-        <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
-      </g>
-    </svg>
-
-  </section><!-- End Hero -->
-
-
-  <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-
-        <div class="section-title" data-aos="zoom-out">
-          <h2>About</h2>
-          <p>Who we are</p>
-        </div>
-
-        <!-- <div class="row content" data-aos="fade-up">
-          <div class="col-lg-6">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <ul>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-            </ul>
+        </g>
+        <g class="wave2">
+          <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+          </g>
+          <g class="wave3">
+            <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+            </g>
+          </svg>
+          
+        </section><!-- End Hero -->
+        
+        
+        <main id="main">
+          
+          <!-- ======= About Section ======= -->
+          <section id="about" class="about">
+            <div class="container">
+              
+              <div class="section-title" data-aos="zoom-out">
+                <h2>About</h2>
+                <p>Who we are</p>
+              </div>
+              
+              <!-- <div class="row content" data-aos="fade-up">
+                <div class="col-lg-6">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua.
+                  </p>
+                  <ul>
+                    <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+                    <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
+                    <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+                  </ul>
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0">
+                  <p>
+                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                  
+                </div>
+              </div> -->
+              
+            </div>
+          </section><!-- End About Section -->
+          
+          {% block content%}
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h3>Login </h3>
+               
+                <div class="card my-3">
+                  {{graphs['login'] |safe}}
+                </div>
+                <table class="table table-striped table-responsive table-sm" id="login">
+                  <thead>
+                    <tr >
+                      <th scope="col">#</th>
+                      <th scope="col">IP Address</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Website</th>
+                      <th scope="col">Login Attempt</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in login_data %}
+                    <tr>
+                      <td>{{ item.id }}</td>
+                      <td>{{ item.ip }}</td>
+                      <td>{{ item.date }}</td>
+                      <td>{{ item.website }}</td>
+                      <td>{{ item.login_count}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                
+                
+                <h3>Signup</h3>
+                <div class="card my-3">
+                  {{graphs['signup'] |safe}}
+                <table class="table table-striped table-responsive table-sm" id= "signup">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">IP Address</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Website</th>
+                      <th scope="col">Signup Attempt</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in signup_data %}
+                    <tr>
+                      <td >{{ item.id }}</td>
+                      <td>{{ item.ip }}</td>
+                      <td>{{ item.date }}</td>
+                      <td>{{ item.website }}</td>
+                      <td>{{ item.register_count}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                
+                
+                <h3>Contact </h3>
+                <div class="card my-3">
+                  {{graphs['contact'] |safe}}
+                <table class="table table-stripedtable-responsive table-sm" id= "contact">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">IP Address</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Website</th>
+                      <th scope="col">Contact Attempt</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in contact_data %}
+                    <tr>
+                      <td >{{ item.id }}</td>
+                      <td>{{ item.ip }}</td>
+                      <td>{{ item.date }}</td>
+                      <td>{{ item.website }}</td>
+                      <td>{{ item.contact_count }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                
+                
+                <h3>Page View</h3>
+                <div class="card my-3">
+                  {{graphs['pagevisit'] |safe}}
+                <table class="table table-striped table-responsive table-sm" id="pageview">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">IP Address</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Website</th>
+                      <th scope="col">Page View</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in pagevisit_data %}
+                    <tr>
+                      <td>{{ item.id }}</td>
+                      <td>{{ item.ip }}</td>
+                      <td>{{ item.date }}</td>
+                      <td>{{ item.website }}</td>
+                      <td>{{ item.visitor_count }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                
+                
+                <h3>Page Data</h3>
+                <div class="card my-3">
+                  {{graphs['browser'] |safe}}
+                <table class="table table-striped table-responsive table-sm" id="pagedata">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">IP Address</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Website</th>
+                      <th scope="col">Browser</th>
+                      <th scope="col">OS</th>
+                      <th scope="col">Device</th>
+                      <th scope="col">City</th>
+                      <th scope="col">Country</th>
+                      <th scope="col">Region</th>
+                      <th scope="col">Latitude</th>
+                      <th scope="col">Longitude</th>
+                      <th scope="col">Duration</th>
+                    </tr>
+                  </thead>
+                  
+                  <tbody>
+                    {% for item in pagedata %}
+                    <tr>
+                      <td>{{ item.id }}</td>
+                      <td>{{ item.ip }}</td>
+                      <td>{{ item.date }}</td>
+                      <td>{{ item.website }}</td>
+                      <td>{{ item.browser }}</td>
+                      <td>{{ item.os }}</td>
+                      <td>{{ item.device }}</td>
+                      <td>{{ item.city }}</td>
+                      <td>{{ item.country }}</td>
+                      <td>{{ item.region }}</td>
+                      <td>{{ item.lat }}</td>
+                      <td>{{ item.long }}</td>
+                      <td>{{ item.duration }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                  
+                </table>
+                
+              </div>
+            </div>
           </div>
-          <div class="col-lg-6 pt-4 pt-lg-0">
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+          {% endblock content %}
+          
+          
+          
+          <!-- ======= Services Section ======= -->
+          <section id="services" class="services">
+            <div class="container">
+              
+              <div class="section-title" data-aos="zoom-out">
+                <h2>Services</h2>
+                <p>What we do offer</p>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <div class="icon-box" data-aos="zoom-in-left">
+                    <div class="icon"><i class="bi bi-briefcase" style="color: #ff689b;"></i></div>
+                    <h4 class="title"><a href="">Lorem Ipsum</a></h4>
+                    <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
+                  <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="100">
+                    <div class="icon"><i class="bi bi-book" style="color: #e9bf06;"></i></div>
+                    <h4 class="title"><a href="">Dolor Sitema</a></h4>
+                    <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+                  </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mt-5 mt-lg-0 ">
+                  <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="200">
+                    <div class="icon"><i class="bi bi-card-checklist" style="color: #3fcdc7;"></i></div>
+                    <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
+                    <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-5">
+                  <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="300">
+                    <div class="icon"><i class="bi bi-binoculars" style="color:#41cf2e;"></i></div>
+                    <h4 class="title"><a href="">Magni Dolores</a></h4>
+                    <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                  </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mt-5">
+                  <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="400">
+                    <div class="icon"><i class="bi bi-globe" style="color: #d6ff22;"></i></div>
+                    <h4 class="title"><a href="">Nemo Enim</a></h4>
+                    <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-5">
+                  <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="500">
+                    <div class="icon"><i class="bi bi-clock" style="color: #4680ff;"></i></div>
+                    <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
+                    <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </section><!-- End Services Section -->
+          
+          
+          
+          
+          
+          <!-- ======= F.A.Q Section ======= -->
+          <section id="faq" class="faq">
+            <div class="container">
+              
+              <div class="section-title" data-aos="zoom-out">
+                <h2>F.A.Q</h2>
+                <p>Frequently Asked Questions</p>
+              </div>
+              
+              <ul class="faq-list">
+                <li>
+                  <div data-bs-toggle="collapse" href="#faq3" class="collapsed question">What is the purpose of this website? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+                  <div id="faq3" class="collapse" data-bs-parent=".faq-list">
+                    <p>
+                      The purpose of this website is to provide a free traffic analysis service to the users. We do not charge any money for our services. We do not collect any information from the users. We do not store any information related to the users other than their authentication information.
+                    </p>
+                  </div>
+                </li>
+                
+                <li>
+                  <div data-bs-toggle="collapse" href="#faq2" class="collapsed question">How can analysis of web traffic help in website growth?
+                    <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+                    <div id="faq2" class="collapse" data-bs-parent=".faq-list">
+                      <p>
+                        This web traffic analytical tool helps to track information related to logins, page views, and other information related to the website. This information can be used to improve the website and make it more user friendly.
+                      </p>
+                    </div>
+                  </li>
+                  
+                  <li>
+                    <div data-bs-toggle="collapse" class="collapsed question" href="#faq1">Is this a paid service? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+                    <div id="faq1" class="collapse" data-bs-parent=".faq-list">
+                      <p>
+                        No. the service is developed as a part of a project and is completely free to use. We do not charge any money for our services.
+                      </p>
+                    </div>
+                  </li>
+                  
+                  
+                  
+                  
+                  
+                  
+                </ul>
+                
+              </div>
+            </section><!-- End F.A.Q Section -->
             
-          </div>
-        </div> -->
+            
+            
+            
+          </main><!-- End #main -->
+          {% endblock body %}
+          {% block js %}
+          <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+          <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js">          </script>
+          <script>
+            $(document).ready( function () {
+              let table = new DataTable('#login', '#signup' ,"#contact",'#pageview', '#pagedata'{
+                "responsive": true,      
+              });
 
-      </div>
-    </section><!-- End About Section -->
-
-    {% block content%}
-    
-      <h3>Login </h3>
-      <table class="table table-striped" border = "1" style="width:40%">
-      <thead>
-        <tr >
-          <th scope="col">#</th>
-          <th scope="col">IP Address</th>
-          <th scope="col">Date</th>
-          <th scope="col">Website</th>
-          <th scope="col">Login Attempt</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in login_data %}
-        <tr>
-          <td>{{ item.id }}</td>
-          <td>{{ item.ip }}</td>
-          <td>{{ item.date }}</td>
-          <td>{{ item.website }}</td>
-          <td>{{ item.login_count}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <img src = "{{loginimg}}"/>
-    
-    
-        <h3>Signup</h3>
-        <table class="table table-striped" border = 1 style="width:40%">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">IP Address</th>
-            <th scope="col">Date</th>
-            <th scope="col">Website</th>
-            <th scope="col">Signup Attempt</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for item in signup_data %}
-          <tr>
-            <td >{{ item.id }}</td>
-            <td>{{ item.ip }}</td>
-            <td>{{ item.date }}</td>
-            <td>{{ item.website }}</td>
-            <td>{{ item.register_count}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      <img src = "{{signupimg}}"/>
-  
-        <h3>Contact </h3>
-        <table class="table table-striped" border = 1 style="width:40%">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">IP Address</th>
-            <th scope="col">Date</th>
-            <th scope="col">Website</th>
-            <th scope="col">Contact Attempt</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for item in contact_data %}
-          <tr>
-            <td >{{ item.id }}</td>
-            <td>{{ item.ip }}</td>
-            <td>{{ item.date }}</td>
-            <td>{{ item.website }}</td>
-            <td>{{ item.contact_count }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      <img src = "{{contactimg}}"/>
-  
-          <h3>Page View</h3>
-          <table class="table table-striped" border = 1 style="width:40%">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">IP Address</th>
-              <th scope="col">Date</th>
-              <th scope="col">Website</th>
-              <th scope="col">Page View</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for item in pagevisit_data %}
-            <tr>
-              <td>{{ item.id }}</td>
-              <td>{{ item.ip }}</td>
-              <td>{{ item.date }}</td>
-              <td>{{ item.website }}</td>
-              <td>{{ item.visitor_count }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-      </table>
-      <img src = "{{pagevisitimg}}"/>
-
-      <h3>Page Data</h3>
-      <table class="table table-striped" border = 1 style="width:40%">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">IP Address</th>
-          <th scope="col">Date</th>
-          <th scope="col">Website</th>
-          <th scope="col">Browser</th>
-          <th scope="col">OS</th>
-          <th scope="col">Device</th>
-          <th scope="col">City</th>
-          <th scope="col">Country</th>
-          <th scope="col">Region</th>
-          <th scope="col">Latitude</th>
-          <th scope="col">Longitude</th>
-          <th scope="col">Duration</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {% for item in pagedata %}
-        <tr>
-          <td>{{ item.id }}</td>
-          <td>{{ item.ip }}</td>
-          <td>{{ item.date }}</td>
-          <td>{{ item.website }}</td>
-          <td>{{ item.browser }}</td>
-          <td>{{ item.os }}</td>
-          <td>{{ item.device }}</td>
-          <td>{{ item.city }}</td>
-          <td>{{ item.country }}</td>
-          <td>{{ item.region }}</td>
-          <td>{{ item.lat }}</td>
-          <td>{{ item.long }}</td>
-          <td>{{ item.duration }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-      
-    </table>
-    <img src = "{{browserimg}}"/>
-    {% endblock content %}
-
-    
-
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
-      <div class="container">
-
-        <div class="section-title" data-aos="zoom-out">
-          <h2>Services</h2>
-          <p>What we do offer</p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div class="icon-box" data-aos="zoom-in-left">
-              <div class="icon"><i class="bi bi-briefcase" style="color: #ff689b;"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
-            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="100">
-              <div class="icon"><i class="bi bi-book" style="color: #e9bf06;"></i></div>
-              <h4 class="title"><a href="">Dolor Sitema</a></h4>
-              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mt-5 mt-lg-0 ">
-            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="200">
-              <div class="icon"><i class="bi bi-card-checklist" style="color: #3fcdc7;"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mt-5">
-            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="300">
-              <div class="icon"><i class="bi bi-binoculars" style="color:#41cf2e;"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mt-5">
-            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="400">
-              <div class="icon"><i class="bi bi-globe" style="color: #d6ff22;"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mt-5">
-            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="500">
-              <div class="icon"><i class="bi bi-clock" style="color: #4680ff;"></i></div>
-              <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-              <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
-
-
-
-    
-
-    <!-- ======= F.A.Q Section ======= -->
-    <section id="faq" class="faq">
-      <div class="container">
-
-        <div class="section-title" data-aos="zoom-out">
-          <h2>F.A.Q</h2>
-          <p>Frequently Asked Questions</p>
-        </div>
-
-        <ul class="faq-list">
-          <li>
-            <div data-bs-toggle="collapse" href="#faq3" class="collapsed question">What is the purpose of this website? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq3" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                The purpose of this website is to provide a free traffic analysis service to the users. We do not charge any money for our services. We do not collect any information from the users. We do not store any information related to the users other than their authentication information.
-              </p>
-            </div>
-          </li>
-
-          <li>
-            <div data-bs-toggle="collapse" href="#faq2" class="collapsed question">How can analysis of web traffic help in website growth?
-               <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq2" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                This web traffic analytical tool helps to track information related to logins, page views, and other information related to the website. This information can be used to improve the website and make it more user friendly.
-              </p>
-            </div>
-          </li>
-
-          <li>
-            <div data-bs-toggle="collapse" class="collapsed question" href="#faq1">Is this a paid service? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq1" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                No. the service is developed as a part of a project and is completely free to use. We do not charge any money for our services.
-              </p>
-            </div>
-          </li>
-
+              
+            } );
+          </script>
+          {% endblock %}
           
-
           
-
-
-        </ul>
-
-      </div>
-    </section><!-- End F.A.Q Section -->
-
-    <!-- ======= Team Section ======= -->
-    <!-- <section id="team" class="team">
-      <div class="container">
-
-        <div class="section-title" data-aos="zoom-out">
-          <h2>Team</h2>
-          <p>Our Hardworking Team</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up">
-              <div class="member-img">
-                <img src="static/img/team/team-1.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="100">
-              <div class="member-img">
-                <img src="static/img/team/team-2.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="200">
-              <div class="member-img">
-                <img src="static/img/team/team-3.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="300">
-              <div class="member-img">
-                <img src="static/img/team/team-4.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Accountant</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>End Team Section -->
-
-<!-- ======= Contact Section ======= -->
-   
-
-  </main><!-- End #main -->
-  {% endblock body %}
-
-  
-
-  
+          
+          

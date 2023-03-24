@@ -183,23 +183,23 @@ function track_logins(e){
     });
 }
 
-function visitCounter(ip){
-    addCookie("ip", ip, 1);
-    // check if visit cookie exists
-    console.log(document.cookie.indexOf("visit"));
-    if (document.cookie.indexOf("visit") >= 0) {
-        // if exists, get the value
-        document.cookie.split(";").forEach(function(c) {
-            if (c.indexOf("visit") >= 0) {
-                visit = c.split("=")[1];
-            }
-        });
-        // increment the value
-        visit++;
-        // store the new value
-        addCookie("visit", visit, 1);
-    }   
-}
+// function visitCounter(ip){
+//     addCookie("ip", ip, 1);
+//     // check if visit cookie exists
+//     console.log(document.cookie.indexOf("visit"));
+//     if (document.cookie.indexOf("visit") >= 0) {
+//         // if exists, get the value
+//         document.cookie.split(";").forEach(function(c) {
+//             if (c.indexOf("visit") >= 0) {
+//                 visit = c.split("=")[1];
+//             }
+//         });
+//         // increment the value
+//         visit++;
+//         // store the new value
+//         addCookie("visit", visit, 1);
+//     }   
+// }
 
 function getIp(){
     $.getJSON("https://api.ipify.org?format=jsonp&callback=?",

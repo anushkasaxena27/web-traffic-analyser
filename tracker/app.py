@@ -5,6 +5,10 @@ from flask_cors import CORS, cross_origin
 import os
 import matplotlib.pyplot as plt
 import base64
+import plotly.express as px
+
+# get plotly themes - https://plotly.com/python/templates/
+px.defaults.template = 'ggplot2'
 
 app = Flask(__name__)
 dbname = "tracker.sqlite"
@@ -145,30 +149,23 @@ def hello():
     contact_data = TrackContact.query.all()
     pagevisit_data = TrackPageVisit.query.all()
     pagedata = PageData.query.all()
-    generate_plots()
-    loginimg = 'static/img/logins.png'
-    browserimg = 'static/img/browsers.png'
-    signupimg = 'static/img/signups.png'
-    contactimg = 'static/img/contacts.png'
-    pagevisitimg = 'static/img/pagevisits.png'
+    graphs = generate_plots()
 
-    return render_template('index.html',login_data=login_data,signup_data=signup_data,contact_data=contact_data,pagevisit_data=pagevisit_data,pagedata=pagedata, loginimg=loginimg, browserimg=browserimg , signupimg=signupimg, contactimg=contactimg, pagevisitimg=pagevisitimg)
+
+    return render_template('index.html',
+                           login_data=login_data,
+                           signup_data=signup_data,
+                           contact_data=contact_data,
+                           pagevisit_data=pagevisit_data,
+                           pagedata=pagedata,
+                           graphs=graphs)
 
 def generate_plots():
+    graphs = {}
     logindata = TrackLogin.query.all()
     x = [d.ip for d in logindata]
     y = [d.login_count for d in logindata]
-    fig,ax = plt.subplots()
-    ax.bar(x, y)
-    ax.set_title('Logins')
-    ax.set_xlabel('IP Address')
-    ax.set_ylabel('Login Count')
-    if os.path.exists('static/img/logins.png'):
-        os.remove('static/img/logins.png')
-    plt.savefig('static/img/logins.png')
-    
-    plt.clf()
-
+    graphs['login'] = px.bar(x=x, y=y, title='Login Counter', labels={'x':'IP Address', 'y':'Login Count'}, color=y).to_html()
     pagedata = PageData.query.all()
     browser_types = []
     counts = []
@@ -179,51 +176,53 @@ def generate_plots():
         else:
             index = browser_types.index(d.browser)
             counts[index] += 1
-    plt.pie (counts, labels=browser_types)
-    if os.path.exists('static/img/browsers.png'):
-        os.remove('static/img/browsers.png')
-    plt.savefig('static/img/browsers.png')
-    plt.clf()
-     
+    # plt.pie (counts, labels=browser_types)
+    # if os.path.exists('static/img/browsers.png'):
+    #     os.remove('static/img/browsers.png')
+    # plt.savefig('static/img/browsers.png')
+    # plt.clf()
+    graphs['browser'] = px.pie(values=counts, names=browser_types, title='Browser Types').to_html()
     signupdata = TrackSignup.query.all()
     x = [d.ip for d in signupdata]
     y = [d.register_count for d in signupdata]
-    fig,ax = plt.subplots()
-    ax.bar(x, y)
-    ax.set_title('Signups')
-    ax.set_xlabel('IP Address')
-    ax.set_ylabel('Signup Count')
-    if os.path.exists('static/img/signups.png'):
-        os.remove('static/img/signups.png')
-    plt.savefig('static/img/signups.png')
-    plt.clf()
-
+    # fig,ax = plt.subplots()
+    # ax.bar(x, y)
+    # ax.set_title('Signups')
+    # ax.set_xlabel('IP Address')
+    # ax.set_ylabel('Signup Count')
+    # if os.path.exists('static/img/signups.png'):
+    #     os.remove('static/img/signups.png')
+    # plt.savefig('static/img/signups.png')
+    # plt.clf()
+    graphs['signup'] = px.bar(x=x, y=y, title='Signup Counter', labels={'x':'IP Address', 'y':'Signup Count'}, color=y).to_html()
     contactdata = TrackContact.query.all()
     x = [d.ip for d in contactdata]
     y = [d.contact_count for d in contactdata]
-    fig,ax = plt.subplots()
-    ax.bar(x, y)
-    ax.set_title('Contacts')
-    ax.set_xlabel('IP Address')
-    ax.set_ylabel('Contact Count')
-    if os.path.exists('static/img/contacts.png'):
-        os.remove('static/img/contacts.png')
-    plt.savefig('static/img/contacts.png')
-    plt.clf()
+    # fig,ax = plt.subplots()
+    # ax.bar(x, y)
+    # ax.set_title('Contacts')
+    # ax.set_xlabel('IP Address')
+    # ax.set_ylabel('Contact Count')
+    # if os.path.exists('static/img/contacts.png'):
+    #     os.remove('static/img/contacts.png')
+    # plt.savefig('static/img/contacts.png')
+    # plt.clf()
+    graphs['contact'] = px.bar(x=x, y=y, title='Contact Counter', labels={'x':'IP Address', 'y':'Contact Count'}, color=y).to_html()
 
     pagevisitdata = TrackPageVisit.query.all()
     x = [d.ip for d in pagevisitdata]
     y = [d.visitor_count for d in pagevisitdata]
-    fig,ax = plt.subplots()
-    ax.bar(x, y)
-    ax.set_title('Page Visits')
-    ax.set_xlabel('IP Address')
-    ax.set_ylabel('Page Visit Count')
-    if os.path.exists('static/img/pagevisits.png'):
-        os.remove('static/img/pagevisits.png')
-    plt.savefig('static/img/pagevisits.png')
-    plt.clf()
-    
+    # fig,ax = plt.subplots()
+    # ax.bar(x, y)
+    # ax.set_title('Page Visits')
+    # ax.set_xlabel('IP Address')
+    # ax.set_ylabel('Page Visit Count')
+    # if os.path.exists('static/img/pagevisits.png'):
+    #     os.remove('static/img/pagevisits.png')
+    # plt.savefig('static/img/pagevisits.png')
+    # plt.clf()
+    graphs['pagevisit'] = px.bar(x=x, y=y, title='Page Visit Counter', labels={'x':'IP Address', 'y':'Page Visit Count'}, color=y).to_html()
+    return graphs
 
 
 @app.route('/contact',methods = ['GET','POST'] )
