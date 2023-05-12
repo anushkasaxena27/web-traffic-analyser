@@ -10,7 +10,7 @@
 // 10. User longitude
 // 11. duration of visit
 
-common_url = 'http://192.168.18.146:8000'
+common_url = 'http://192.168.18.162:8000'
 
 fetch('https://api.ipify.org/?format=json')
 .then(response => response.json())

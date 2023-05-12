@@ -165,6 +165,9 @@ def generate_plots():
     logindata = TrackLogin.query.all()
     x = [d.ip for d in logindata]
     y = [d.login_count for d in logindata]
+    print(x)
+    print(y)
+    print("---")
     graphs['login'] = px.bar(x=x, y=y, title='Login Counter', labels={'x':'IP Address', 'y':'Login Count'}, color=y).to_html()
     pagedata = PageData.query.all()
     browser_types = []
@@ -236,6 +239,7 @@ def contact():
         db.session.add(contact)
         db.session.commit()
         print("Message Sent Successfully")
+        return redirect('/')
     return render_template('contact.html')
 
 
@@ -317,6 +321,7 @@ def track_page_visit():
 @cross_origin()
 def track_main():
     if request.method == 'POST':
+        
         form_data = request.form
         ip = form_data.get('ip')
         website = form_data.get('website')

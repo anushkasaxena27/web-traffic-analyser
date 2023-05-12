@@ -241,8 +241,8 @@ Home
                       <td>{{ item.date }}</td>
                       <td>{{ item.website }}</td>
                       <td>{{ item.browser }}</td>
-                      <td>{{ item.os }}</td>
-                      <td>{{ item.device }}</td>
+                      <td>{{ item.user_os }}</td>
+                      <td>{{ item.user_device }}</td>
                       <td>{{ item.city }}</td>
                       <td>{{ item.country }}</td>
                       <td>{{ item.region }}</td>
@@ -382,13 +382,12 @@ Home
           <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
           <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js">          </script>
           <script>
-            $(document).ready( function () {
-              let table = new DataTable('#login', '#signup' ,"#contact",'#pageview', '#pagedata'{
-                "responsive": true,      
-              });
+           $(document).ready( function () {
+  let table = new DataTable('#login', '#signup', '#contact', '#pageview', '#pagedata', {
+    "responsive": true,      
+  });
+});
 
-              
-            } );
           </script>
           {% endblock %}
           
